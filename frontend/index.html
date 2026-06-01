@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inclusive Story Bot 🎨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🎨 Inclusive Story Bot</h1>
+                <p>Genera storie inclusive con persone di tutte le corporature e colori di pelle</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="form-section">
+                <h2>📝 Crea la Tua Storia</h2>
+                
+                <!-- Prompt Input -->
+                <div class="form-group">
+                    <label for="prompt">🎯 Descrivi la tua storia:</label>
+                    <textarea 
+                        id="prompt" 
+                        placeholder="Es: Un CEO che presenta in una riunione importante con fiducia..."
+                        rows="3"
+                    ></textarea>
+                </div>
+
+                <!-- Body Type Selection -->
+                <div class="form-group">
+                    <label for="bodyType">👤 Tipo di Corporatura:</label>
+                    <div class="options-grid" id="bodyTypeContainer">
+                        <!-- Caricato via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Skin Tone Selection -->
+                <div class="form-group">
+                    <label for="skinTone">🎨 Colore della Pelle:</label>
+                    <div class="options-grid" id="skinToneContainer">
+                        <!-- Caricato via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Language Selection -->
+                <div class="form-group">
+                    <label for="language">🌍 Lingua:</label>
+                    <select id="language" class="select">
+                        <option value="it">Italiano 🇮🇹</option>
+                        <option value="en">English 🇬🇧</option>
+                    </select>
+                </div>
+
+                <!-- Generate Button -->
+                <button id="generateBtn" class="btn-primary">
+                    ✨ Genera Immagine
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <h2>🖼️ Risultato</h2>
+                
+                <!-- Loading State -->
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>⏳ Generando la tua immagine inclusiva...</p>
+                    <p class="loading-info">Questo potrebbe richiedere 1-2 minuti la prima volta</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="error" class="error-box hidden"></div>
+
+                <!-- Image Result -->
+                <div id="resultContainer" class="result-container hidden">
+                    <img id="resultImage" alt="Immagine generata" class="result-image">
+                    
+                    <div class="result-info">
+                        <div class="info-item">
+                            <strong>📝 Prompt Usato:</strong>
+                            <p id="promptUsed"></p>
+                        </div>
+                        <div class="info-item">
+                            <strong>👤 Corporatura:</strong>
+                            <p id="bodyTypeUsed"></p>
+                        </div>
+                        <div class="info-item">
+                            <strong>🎨 Colore Pelle:</strong>
+                            <p id="skinToneUsed"></p>
+                        </div>
+                        <div class="info-item">
+                            <strong>⏱️ Tempo di Generazione:</strong>
+                            <p id="generationTime"></p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="downloadBtn" class="btn-secondary">⬇️ Scarica Immagine</button>
+                        <button id="generateNewBtn" class="btn-secondary">🔄 Genera Nuova</button>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state">
+                    <p>👈 Compila il form e genera la tua prima immagine inclusiva!</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🌈 Ogni corpo è bellissimo | API disponibile su http://localhost:8000/docs</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
