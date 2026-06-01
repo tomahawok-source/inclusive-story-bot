@@ -14,6 +14,7 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 import torch
 from diffusers import StableDiffusionPipeline
@@ -77,6 +78,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Monta la cartella frontend come file statici
+frontend_path = Path(__file__).parent.parent / "frontend"
+if frontend_path.exists():
+    app.mount("/frontend", StaticFiles(directory=str(frontend_path)), name="frontend")
+    logger.info(f"✅ Frontend montato da: {frontend_path}")
+else:
+    logger.warning(f"⚠️  Cartella frontend non trovata: {frontend_path}")
 
 # Modello AI globale
 pipe = None
@@ -143,7 +152,8 @@ async def root():
         "version": "1.0.0",
         "description": "Genera storie inclusive con immagini",
         "docs": "/docs",
-        "health": "/health"
+        "health": "/health",
+        "frontend": "/frontend/index.html"
     }
 
 @app.get("/health")
